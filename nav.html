@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,body{
+       
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+    }
+    .header h1{
+         text-align: center;
+    }
+    .container{
+        display: inline-flex;
+        width: 100%;
+    }
+    .navigation{
+        width: 60px;
+        position: relative;
+        /* height: 100vh; */
+        min-height: 90vh;
+        white-space: nowrap;
+        box-shadow: 5px 10px 15px rgba(0,0,0,0.1);
+        margin: 5px;
+        padding: 10px;
+        /* z-index: 100; */
+      transition: 0.5s;
+    }
+    .navigation.active{
+        /* position: fixed; */
+        /* z-index: 100; */
+        width: 200px;
+    }
+    .navigation ul{
+        padding-left: 0;
+        overflow-x: hidden;
+    }
+    .navigation li{
+        list-style: none;
+        padding:10px auto;
+       height: 60px;
+        margin: 10px auto;
+    }
+    .navigation li a{
+        text-decoration: none;
+        font-size: 2em;
+        display: block;
+        line-height: 60px;
+        transition: 0.3s;
+        /* color: #fff; */
+    }
+    .navigation li a:hover{
+        transform: scale(1.1);
+        background: #f9f9f9;
+       
+    }
+    .navigation.active li a:hover{
+        transform: scale(1.1);
+        background: rgb(185, 188, 190);
+    }
+    .navigation ul li a span.icon{
+        display: inline-block;
+         width: 60px;
+        background: yellow;
+        border-radius: 50%;
+        /* display: flex; */
+       text-align: center;
+    }
+    .navigation ul li a span.icon:hover{
+        transform: scale(1.05);
+    }
+    #navtoggle{
+        position: absolute;
+        top:130px;
+        right: -40px;
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        box-shadow: inset 0 -5px 5px rgba(0,0,0,0.1),
+                     0 5px 10px rgba(0,0,0,0.1),
+                     0 10px 15px rgba(0,0,0,0.1);
+        border-radius: 50px;
+        z-index: 1000;
+    }
+    #navtoggle::before{
+        content: '>';
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        font-weight: bolder;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    #navtoggle.active{
+        
+        box-shadow: inset 10px 10px 15px rgba(0,0,0,0.1),
+                    inset 0 10px 15px rgba(0,0,0,0.1);
+                    
+    }
+    #navtoggle.active:before{
+       
+        content: '<';
+       
+    }
+    .main{
+        margin-left: 10px;
+    }
+
+</style>
+<body>
+    <div class="header"><h1>title of the work comes here</h1></div>
+    <div class="container">
+        
+        <div class="navigation">
+            <div id="navtoggle"></div>
+            <ul>
+                <li><a href="#">
+                        <span  class="icon">H</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li><a href="#">
+                    <span class="icon">P</span>
+                    <span>Portifolio</span>
+                </a>
+            </li>
+            <li><a href="#">
+                <span  class="icon">R</span>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li><a href="#">
+            <span  class="icon">C</span>
+            <span>Contact</span>
+        </a>
+    </li>
+            </ul>
+           
+        </div>
+        <div class="main">
+            <h1>main page</h1>
+        </div>
+    </div>
+    <script>
+        const toogler= document.getElementById("navtoggle");
+        const nav =document.querySelector(".navigation");
+        toogler.addEventListener("click",()=>{
+            nav.classList.toggle("active");
+            toogler.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
