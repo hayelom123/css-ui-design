@@ -1,0 +1,33 @@
+online shoping system
+ 
+name  		ID
+hayelom kiros	0609/10
+Kalu Siyoum	0663/10
+Hiluf Tesfaye	0630/10
+kaleab melkamu 	0651/10
+Henok zelalem	0626/10
+
+
+
+This project was  proposed for HCI user interface project.
+we focuse more  on user interface than functionality .
+because  of time constraint. we try to develop user interface of online shoping for cloths and shoes.
+
+this UI Design includes
+		best authentication page
+				-sign in
+				-sign up with out getting  bored with the form
+		textfield and label in the authentication page(login and signup)
+		simplified menu for navigation
+				since the page is single page we move easily through catagories button
+				selects where he/she needs
+		simplified Radio BUttons
+		simplified and new Design Checkbox
+		Nice and interesting buttons which focuses eye contact
+		new scroll bar which shows the progress of user in our page
+
+		this page single Page web with daynamic interaction
+
+           Note : this web Page is Interactive and Responsive(different screen size from small screen to large screen
+	 devices).
+		
