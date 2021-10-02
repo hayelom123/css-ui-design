@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: #111;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .book{
+            position: relative;
+              
+               width: 300px;
+               height: 400px;
+              transition: transform 0.5s;
+        }
+        .paper{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;  
+            perspective: 1500px;
+        }
+        .front ,.back{
+            background-color: #f1f1f1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            transform-origin: left;
+            transition: transform 0.5s;
+        }
+        .front{
+            z-index: 1;
+            backface-visibility: hidden;
+            border-left: 3px solid green;
+        }
+        .back{
+            z-index: 0;
+        }
+        
+        .front-content,.back-content{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .back-content{
+            transform: rotateY(180deg);
+        }
+        .flipped .front,.flipped .back{
+            transform: rotateY(-180deg);
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 1em;
+            border-radius: 50%;
+            outline: none;
+            border: none;
+            transition: transform 0.5s;
+        }
+        #p1{ z-index: 3;}
+        #p2{z-index: 2;}
+        #p3{z-index: 1;}
+    </style>
+</head>
+<body>
+    <button id="prevBtn" class="icon prev" onclick="prevPage()"> prev</button>
+    <div class="book">
+      
+        <div id="p1" class="paper ">
+            <div class="front"><div class="front-content">
+                <h1>front 1</h1>
+            </div></div>
+            <div class="back"><div class="back-content">
+                <h1>back 1</h1>
+            </div></div>
+        </div>
+        <div id="p2" class="paper">
+            <div class="front">
+                <div class="front-content">
+                    <h1>front 2</h1>
+                </div>
+            </div>
+            <div class="back">
+                <div class="back-content">
+                    <h1>back 2</h1>
+                </div>
+            </div>
+        </div>
+        <div id="p3" class="paper">
+            <div class="front">
+                <div class="front-content">
+                    <h1>front 3</h1>
+                </div>
+            </div>
+            <div class="back">
+                <div class="back-content">
+                    <h1>back 3</h1>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <button id="nextBtn" class="icon next" onclick="nextPage()">
+        next
+    </button>
+    <script>
+        const book =document.getElementsByClassName("book");
+        const p1 = document.getElementById("p1");
+        const p2 = document.getElementById("p2");
+        const p3= document.getElementById("p3");
+
+          const prevBtn=document.getElementById("prevBtn");
+          const nextBtn=document.getElementById("nextBtn");
+
+         let currentPage=1;
+         let numOfPapers=3;
+         let lastPage= numOfPapers+1;
+
+        const nextPage=()=>{
+            if(currentPage<lastPage){
+                switch(currentPage){
+                    case 1:
+                        openBook();
+                        p1.classList.add("flipped");
+                        p1.style.zIndex=1;
+                        break;
+                    case 2:
+                        p2.classList.add("flipped");
+                        p2.style.zIndex = 2;
+                        break;
+                    case 3:
+                        p3.classList.add("flipped"); 
+                        p3.style.zIndex = 3;
+                        closeBook(false);
+                        break;
+                    default:throw new Error("unkown page");
+                }
+                console.log("CurrentPage:",currentPage);
+                currentPage++;
+            }
+            // p1.classList.toggle();
+        }
+        const prevPage = () => {
+                if(currentPage>1){
+                    switch(currentPage){
+                        case 2:closeBook(true);
+                               p1.classList.remove("flipped");
+                               p1.style.zIndex=3;
+                               break;
+                        case 3: p2.classList.remove("flipped");p2.style.zIndex=2; break;
+                        case 4: openBook();p3.classList.remove("flipped");p3.style.zIndex=1;break;
+                        default: throw new Error("unknown pag");
+                    }
+                     console.log("CurrentPage:", currentPage);
+                    currentPage--;
+                }
+            }
+        const openBook = () =>{
+               book[0].style.transform="translateX(50%)";
+               prevBtn.style.transform="translateX(-180px)";
+               nextBtn.style.transform="translateX(180px)";
+            }
+        const closeBook = (isAtBeginning) => { 
+            
+            if(isAtBeginning){
+            book[0].style.transform = "translateX(0%)";
+            }else{
+             book[0].style.transform = "translateX(100%)";
+            }
+            prevBtn.style.transform = "translateX(0px)";
+            nextBtn.style.transform = "translateX(0px)";
+            }
+    </script>
+</body>
+</html>
